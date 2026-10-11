@@ -1,0 +1,13 @@
+[Unit]
+Description=GPU power limit + fan mode daemon
+After=nvidia-persistenced.service
+
+[Service]
+ExecStart=/usr/bin/python3 /usr/local/lib/gpumode/gpumoded.py
+ExecReload=/bin/kill -HUP $MAINPID
+StateDirectory=gpumode
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
